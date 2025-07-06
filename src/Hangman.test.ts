@@ -51,14 +51,14 @@ describe("Hangman machine", () => {
         expect(game.availableTrials()).toEqual(4)
     })
 
-    it.skip("reveals only the part of the secret that has been guessed", () => {
+    it("reveals only the part of the secret that has been guessed", () => {
         let game = startGame("cat", 5)
         expect(game.revealedSecret()).toEqual("___")
         game = game.tryTo(Guess.letter('a'))
         expect(game.revealedSecret()).toEqual("_a_")
     })
 
-    it.skip("can't play a game with wrong arguments", () => {
+    it("can't play a game with wrong arguments", () => {
         let game = startGame("cat", -7)
         expect(game.isOver()).toBe(true)
         expect(game.isMisconfigured()).toBe(true)
@@ -71,7 +71,7 @@ describe("Hangman machine", () => {
         expect(game.problem()).toBe(GameError.SecretWordMustHaveAtLeastOneLetter)
     })
 
-    it.skip("does not alter a game that is already over", () => {
+    it("does not alter a game that is already over", () => {
         let game = startGame("cat", 1)
         game = game.tryTo(Guess.letter('a'))
         game = game.tryTo(Guess.letter('b'))
@@ -80,7 +80,7 @@ describe("Hangman machine", () => {
         expect(game.availableTrials()).toEqual(0)
     })
 
-    it.skip("does not allow for words or multiple letters when guessing", () => {
+    it("does not allow for words or multiple letters when guessing", () => {
         let game = startGame("cat", 5)
         game = game.tryTo(Guess.letter('ca'))
         expect(game.revealedSecret()).toEqual("___")
@@ -88,7 +88,7 @@ describe("Hangman machine", () => {
         expect(game.availableTrials()).toEqual(5)
     })
 
-    it.skip("does not allow for symbols or numbers, just letters a to z", () => {
+    it("does not allow for symbols or numbers, just letters a to z", () => {
         let game = startGame("cat", 5)
         game = game.tryTo(Guess.letter('1'))
         expect(game.revealedSecret()).toEqual("___")
@@ -96,7 +96,7 @@ describe("Hangman machine", () => {
         expect(game.availableTrials()).toEqual(5)
     })
 
-    it.skip("allows for the game to continue after an invalid trial", () => {
+    it("allows for the game to continue after an invalid trial", () => {
         let game = startGame("cat", 5)
         game = game.tryTo(Guess.letter('1'))
         game = game.tryTo(Guess.letter('a'))
