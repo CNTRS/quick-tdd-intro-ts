@@ -1,6 +1,6 @@
 
 import { describe, it, expect} from "vitest";
-//import { GameError, GameResult, Guess, Hangman } from "./Hangman";
+import { GameError, GameResult, Guess, Hangman } from "./Hangman";
 
 
 describe("Hangman machine", () => {
@@ -9,43 +9,43 @@ describe("Hangman machine", () => {
         return Hangman.startGame({secretWord, trials})
     }
 
-    it.skip("finishes the game when all trials are consumed", () => {
+    it("finishes the game when all trials are consumed", () => {
         let game = startGame("p", 1)
         game = game.tryTo(Guess.letter('a'))
         expect(game.isOver()).toBe(true)
     })
 
-    it.skip("keeps playing the game whilst there are trials left", () => {
+    it("keeps playing the game whilst there are trials left", () => {
         let game = startGame("p", 5)
         game = game.tryTo(Guess.letter('a'))
         expect(game.isOver()).toBe(false)
     })
 
-    it.skip("finishes the game when the player guesses the secret word", () => {
+    it("finishes the game when the player guesses the secret word", () => {
         let game = startGame("p", 5)
         game = game.tryTo(Guess.letter('p'))
         expect(game.isOver()).toBe(true)
     })
 
-    it.skip("knows when the player wins", () => {
+    it("knows when the player wins", () => {
         let game = startGame("p", 5)
         game = game.tryTo(Guess.letter('p'))
         expect(game.result()).toEqual(GameResult.PlayerWins)
     })
 
-    it.skip("knows when the player loses", () => {   
+    it("knows when the player loses", () => {
         let game = startGame("p", 1)
         game = game.tryTo(Guess.letter('a'))
-        expect(game.result()).toEqual(GameResult.PlayerLoses)   
+        expect(game.result()).toEqual(GameResult.PlayerLoses)
     })
 
-    it.skip("knows that the game is ongoing", () => {
+    it("knows that the game is ongoing", () => {
         let game = startGame("p", 5)
         game = game.tryTo(Guess.letter('a'))
         expect(game.result()).toEqual(GameResult.Ongoing)
     })
 
-    it.skip("counts the number of trials available", () => {
+    it("counts the number of trials available", () => {
         let game = startGame("p", 5)
         game = game.tryTo(Guess.letter('a'))
         expect(game.availableTrials()).toEqual(4)
